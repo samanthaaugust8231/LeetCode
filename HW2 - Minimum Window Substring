@@ -1,0 +1,23 @@
+class Solution(object):
+    def minWindow(self, s, t):
+      t = Counter(t)
+      c =  Counter()
+      left = required_chars = 0
+      min_len = float('inf')
+      m = float('inf')
+
+      for right, char in enumerate(s):
+          c[char] += 1
+          required_chars += (char in t and c[char] == t[char])
+
+          while required_chars == len(t):
+              if right - left + 1 < min_len:
+                  min_len, m = right - left + 1, s[left:right+1]
+
+              left_char = s[left]
+              c[left_char] -= 1
+              required_chars -= (left_char in t and c[left_char] < t[left_char])
+
+              left += 1
+
+      return m
