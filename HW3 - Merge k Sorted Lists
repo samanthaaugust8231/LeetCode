@@ -1,0 +1,23 @@
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def mergeKLists(self, lists):
+        h = []
+        for i, lst in enumerate(lists):
+            if lst:
+                heapq.heappush(h, (lst.val, i, lst))
+    
+        dummy = ListNode()
+        current = dummy
+
+        while heap:
+            val, i, node = heapq.heappop(h)
+            current.next = ListNode(val)
+            current = current.next
+
+            if node.next:
+                heapq.heappush(h, (node.next.val, i, node.next))
+
+        return dummy.next
