@@ -1,0 +1,19 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        if not s:
+            return 0
+
+        c = {}  
+        s = 0  
+        m = 0
+
+        for end, char in enumerate(s):
+            if char in c and c[char] >= s:
+                s= c[char] + 1
+
+            c[char] = end  
+            current_length = end - s + 1  
+            m = max(m, current_length)
+
+        return m
+        
