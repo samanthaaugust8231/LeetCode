@@ -1,0 +1,17 @@
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        t = head
+        h = head.next
+
+        while h and h.next:
+            if t == h:
+                return True
+            t = t.next
+            h = h.next
+
+        return False
